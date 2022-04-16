@@ -1,5 +1,5 @@
-const giphyKey = "XdH4LFG7cQeNiS3D6M1rVBYWee3j3hG6";
+const giphyKey = process.env.GIPHY
 
 module.exports = {
-  "GIPHY": giphyKey
+  GIPHY: giphyKey,
 }
