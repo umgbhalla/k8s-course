@@ -1,10 +1,12 @@
 FROM node:14
+RUN mkdir -p /app && chown -R node:node /app
 WORKDIR /app
+USER node
 RUN mkdir tmp
 RUN mkdir assets
-COPY ./package*.json /app/
+COPY --chown=node ./package*.json /app/
 RUN npm install
-COPY *.js /app/
-COPY assets/* /app/assets
-COPY tmp /app/
+COPY --chown=node *.js /app/
+COPY --chown=node assets/* /app/assets
+COPY --chown=node tmp /app/
 CMD ["node","/app"]
