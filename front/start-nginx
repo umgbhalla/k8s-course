@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+echo "Starting"
+echo $(whoami)
+cd /code
+for file in js/app.*.js;
+do
+ if [ ! -f $file.tmp.js ]; then
+   cp $file $file.tmp.js
+ fi
+ envsubst '$BASE_URL' < $file.tmp.js > $file
+done
+cd /
+nginx -g 'daemon off;'
+
